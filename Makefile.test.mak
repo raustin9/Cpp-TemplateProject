@@ -2,14 +2,15 @@ CC := g++
 CXXSPEC := c++20
 
 BUILD_DIR := bin
-TEST_DIR := tests
 OBJ_DIR := obj
 
-ASSEMBLY :=assembly# change this to the name of the assembly you want to build
+ASSEMBLY := viper
+TEST_DIR := tests
 COMPILER_FLAGS := -g -Werror -Wall -std=$(CXXSPEC) -fPIC
 INCLUDE_FLAGS := -I$(ASSEMBLY)/src -I$(ASSEMBLY)
-LINKER_FLAGS :=  -shared
-TEST_LINKER_FLAGS := -L./bin/ -l$(ASSEMBLY)
+TEST_INCLUDE_FLAGS := -I$(TEST_DIR)/src -I$(TEST_DIR) 
+LINKER_FLAGS := -shared
+TEST_LINKER_FLAGS := -L./bin/ -lviper
 DEFINES := -DQDEBUG -DQEXPORT
 
 SRC_FILES := $(shell find $(ASSEMBLY) -name *.cc)		# .cc files
@@ -40,11 +41,10 @@ test_scaffold: # create build directory
 compile: #compile .cc files
 	@echo Compiling...
 
-# .PHONY: bin/$(ASSEMBLY)
+.PHONY: bin/$(ASSEMBLY)
 bin/$(ASSEMBLY): $(OBJ_FILES)
-	@ $(CC) $(COMPILER_FLAGS) $(OBJ_FILES) -o $@ $(LDFLAGS)
+	@$(CC) $(COMPILER_FLAGS) $(OBJ_FILES) -o $@ $(LINKER_FLAGS)
 
-# TESTING
 .PHONY: bin/$(TEST_DIR)
 bin/$(TEST_DIR): $(TEST_OBJ_FILES) $(OBJ_FILES)
 	@$(CC) $(COMPILER_FLAGS) $(TEST_OBJ_FILES) -o $@ $(TEST_INCLUDE_FLAGS) $(TEST_LINKER_FLAGS)
@@ -61,4 +61,4 @@ clean: # clean build directory
 
 $(OBJ_DIR)/%.cc.o: %.cc # compile .c to .o object
 	@echo   $<...
-	$(CC) $< $(COMPILER_FLAGS) -c -o $@ $(DEFINES) $(INCLUDE_FLAGS) $(TEST_INCLUDE_FLAGS)
+	@$(CC) $< $(COMPILER_FLAGS) -c -o $@ $(DEFINES) $(INCLUDE_FLAGS) $(TEST_INCLUDE_FLAGS)
