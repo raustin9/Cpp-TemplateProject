@@ -29,3 +29,10 @@ This project is using default values for some names.
 
 We use the name `assembly` as the name of the assembly we are building. If you wish to rename this, change this directories name to what you want.
 You will also need to change this in the `CMakeLists.txt` file as well in the `project(...)` call at the beginning.
+
+## Compiling the assembly as a library
+Te default target of compilation is currently an executable.
+
+If you wish to compile to a library you should comment/remove the lines compiling as an executable, and uncomment the ones for the library.
+
+You  can also change it to STATIC library if you wish.
