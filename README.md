@@ -1,9 +1,25 @@
-# Cpp-TemplateProject
-A shell for beginning new C++ projects with support for cross-platform support for compilation on both Windows and Linux. (Mac potentially as well)
+# C++ Template Project built using CMake
+This is a cross-platform template C++ project using the CMake build system.
 
-## Notes
-If you want to do things like dynamic linking, there will be a little more work. This is something I am adding in a new branch soon.
+## Building
+There are included `go.sh` and `go.ps` scripts in the project root directory.
 
-The default version of C++ being used is C++20. To change this, you need to chance the CXXSPEC variable in both `Makefile`s and I would also reccomending changing it in `compile_flags.txt` if you are using the clangd LSP.
+Run the command `./go.sh Build-All` to run the build commands on Linux or MacOS.
 
-The `assembly` directory is where project source code goes. Change this to the name you want this folder to be. Follow similar steps to changing the C++ version above to do this.
+Run the command `./go.ps Build-All` to run the build commands on Windows.
+
+Alternatively, you can just run the build commands yourself:
+```
+cmake -B build .
+cmake --build build
+```
+These commands place all build utilities CMake generates in the `build` directory which is preferable to cluttering the root dir.
+
+## Using compile_commands.json
+If you are using the clangd language server, CMake can generate a `compile_commands.json` file that works with clangd in order to allow the LSP to work.
+
+Because we are placing CMake build outputs in our `build` directory, this places the json file there as well. 
+
+On Linux you can run `ln build/compile_commands.json .` to create a symlink. This also means it will change as the source json file changes since it is a link.
+
+On Windows I am gonna do that later lol.
