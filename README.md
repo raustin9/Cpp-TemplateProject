@@ -20,6 +20,12 @@ If you are using the clangd language server, CMake can generate a `compile_comma
 
 Because we are placing CMake build outputs in our `build` directory, this places the json file there as well. 
 
-On Linux you can run `ln build/compile_commands.json .` to create a symlink. This also means it will change as the source json file changes since it is a link.
+On Linux you can run `ln -s build/compile_commands.json .` to create a symlink. This also means it will change as the source json file changes since it is a link.
 
 On Windows I am gonna do that later lol.
+
+## Tayloring to your preferences
+This project is using default values for some names.
+
+We use the name `assembly` as the name of the assembly we are building. If you wish to rename this, change this directories name to what you want.
+You will also need to change this in the `CMakeLists.txt` file as well in the `project(...)` call at the beginning.

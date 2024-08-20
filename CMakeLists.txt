@@ -17,11 +17,11 @@ set(CMAKE_CXX_FLAGS "-Wall")
 # NOTE: you may need to add subfolders directly here
 #       I use the .cc notation for C++ source files. You can change this to .cpp
 file(GLOB ASSEMBLY_SOURCES
-    "${PROJECT_SOURCE_DIR}/assembly/*.cc"
+    "${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.cc"
 )
 
 file(GLOB ASSEMBLY_HEADERS
-    "${PROJECT_SOURCE_DIR}/assembly/*.h"
+    "${PROJECT_SOURCE_DIR}/${PROJECT_NAME}/*.h"
 )
 
 # Build dependencies if you have any
