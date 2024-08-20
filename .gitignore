@@ -9,3 +9,5 @@ examples/*
 
 lib/*
 !lib/.keep
+
+compile_commands.json
