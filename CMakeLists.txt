@@ -6,9 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Set the compiler flags we want to use
-set(CMAKE_CXX_FLAGS "-Wall")
-
 # If your LSP does not find the path to your local libs/includes, you can use something like this
 # to force the compile_flags.json to direct an include path to it
 # set(CMAKE_CXX_FLAGS "-Wall -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11")
